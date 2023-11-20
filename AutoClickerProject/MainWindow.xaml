@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoClickerProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" ResizeMode="CanMinimize" Height="450" Width="450">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
 
+
+        <Button Name="startButton" Content="Start" FontSize="25" BorderThickness="0" Click="startButton_Click" Grid.Row="1"/>
+        <Button x:Name="stopButton" Content="Stop" FontSize="25" BorderThickness="0" Click="stopButton_Click" Grid.Column="1" Grid.Row="2"/>
     </Grid>
 </Window>
