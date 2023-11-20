@@ -12,12 +12,14 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="53*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="310*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="63"/>
         </Grid.RowDefinitions>
 
+        <Button Name="settingsButton" Content="Settings" FontSize="20" BorderThickness="1" Click="startButton_Click"  Grid.ColumnSpan="2" Grid.Row="1"/>
 
-        <Button Name="startButton" Content="Start" FontSize="25" BorderThickness="0" Click="startButton_Click" Grid.Row="1"/>
-        <Button x:Name="stopButton" Content="Stop" FontSize="25" BorderThickness="0" Click="stopButton_Click" Grid.Column="1" Grid.Row="2"/>
+        <Button Name="startButton" Content="Start" FontSize="20" BorderThickness="1" Click="startButton_Click" Grid.Row="2"  Grid.Column="0" />
+        <Button x:Name="stopButton" Content="Stop" FontSize="20" BorderThickness="1" Click="stopButton_Click" Grid.Row="2"  Grid.Column="1" />
     </Grid>
 </Window>
