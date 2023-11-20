@@ -5,21 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoClickerProject"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="CanMinimize" Height="450" Width="450">
+        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450" Background="#121212" >
+        
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="310*"/>
-            <RowDefinition Height="33*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="84*"/>
+            <RowDefinition Height="215*"/>
+            <RowDefinition Height="37*"/>
             <RowDefinition Height="63"/>
         </Grid.RowDefinitions>
 
-        <Button Name="settingsButton" Content="Settings" FontSize="20" BorderThickness="1" Click="startButton_Click"  Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Label Content="Auto Clicker V1" Foreground="#e1e1e1" FontSize="25" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Height="43" Width="179"/>
+        <Button Grid.Column="1" Name="exitButton" Click="exitButton_Click" Content="x" Foreground="White" HorizontalAlignment="Left" Margin="188,0,0,0" VerticalAlignment="Center" Height="26" Width="27" Style="{DynamicResource ButtonStyle1}"/>
+        <Button Grid.Column="1" Name="minimizeButton" Click="minimizeButton_Click" Content="-" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="156,0,0,0" VerticalAlignment="Center" Height="26" Width="27" Style="{DynamicResource ButtonStyle1}"/>
 
-        <Button Name="startButton" Content="Start" FontSize="20" BorderThickness="1" Click="startButton_Click" Grid.Row="2"  Grid.Column="0" />
-        <Button x:Name="stopButton" Content="Stop" FontSize="20" BorderThickness="1" Click="stopButton_Click" Grid.Row="2"  Grid.Column="1" />
+        <Rectangle HorizontalAlignment="Left" Height="47" Margin="10,10,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="305" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="19,1,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="76"><Run Text="Click interval" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+        <Label Content="h" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="70,24,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox Name="millisecondInput" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="10,28,171,36" Grid.Row="1" Grid.Column="1"/>
+        <Label Content="m" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="137,24,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox Name="secondInput" PreviewTextInput="NumberValidationTextBox" Text="1" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="168,28,13,36" Grid.Row="1"/>
+        <Label Content="s" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Margin="211,24,0,0"/>
+        <TextBox Name="minuteInput" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="95,28,86,36" Grid.Row="1"/>
+        <Label Content="ms" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="53,24,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Name="hourInput" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="28,28,153,36" Grid.Row="1"/>
+
+
+
+        <Button Style="{DynamicResource ButtonStyle1}" Name="settingsButton" Content="Settings" FontSize="20" Foreground="#e1e1e1" Click="settingsButton_Click"  Grid.ColumnSpan="2" Grid.Row="3"/>
+        <Button Style="{DynamicResource ButtonStyle1}" Name="startButton" Content="Start" FontSize="20" Foreground="#e1e1e1" BorderThickness="1" Click="startButton_Click" Grid.Row="4"  Grid.Column="0" />
+        <Button Style="{DynamicResource ButtonStyle1}" Name="stopButton" Content="Stop" FontSize="20" Foreground="#e1e1e1" Click="stopButton_Click" Grid.Row="4"  Grid.Column="1"/>
     </Grid>
 </Window>
