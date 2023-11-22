@@ -1,15 +1,9 @@
 ﻿using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 
@@ -33,9 +27,10 @@ namespace AutoClickerProject
         private DispatcherTimer clickTimer = new DispatcherTimer();
 
 
-        private bool isClicking, isRandom, isLocationSet;
+        private bool isClicking, isRandom, isLocationSet, hasClickLimit;
         private int clickInterval = 1000, randClickInterval;
         private int randMinTime = 1, randMaxTime = 2;
+        private int currentClickTime;
         public Point setlocationPoint = new Point(404, 404); //for this var, 404,404 means its null
         public MainWindow()
         {
@@ -43,6 +38,7 @@ namespace AutoClickerProject
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             stopButton_Click(this, null);
             HideOrShowPickLocation(false);
+            HideOrShowClickRepeat(false);
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -51,7 +47,9 @@ namespace AutoClickerProject
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
-        {   if (isClicking) return;
+        {   
+            if (isClicking) return;
+            if (clickrepeatTextBox.Text == "0" && hasClickLimit) { stopButton_Click(this, null); return; }
             isClicking = true;
             startButton.IsEnabled = false;
             stopButton.IsEnabled = true;
@@ -64,6 +62,8 @@ namespace AutoClickerProject
             clickTimer.Start();
 
             if (picklocationHideOnStartCheckBox.IsChecked == true && picklocationCheckbox.IsChecked == true) WindowState = WindowState.Minimized;
+            currentClickTime = 0;
+        
         }
 
 
@@ -144,6 +144,19 @@ namespace AutoClickerProject
             //change the window to the settings window
         }
 
+
+        private void clickrepeatCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            HideOrShowClickRepeat(true);
+            hasClickLimit = true;
+
+        }
+        private void clickrepeatCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            HideOrShowClickRepeat(false);
+            hasClickLimit = false;
+        }
+
         private void Click_Timer_Tick(object? sender, EventArgs e)
         {
             Point relativePosition = Mouse.GetPosition(this);
@@ -161,10 +174,9 @@ namespace AutoClickerProject
 
         private void LeftClick(Point p)
         {
-            if (isLocationSet)
-            {
-                SetCursorPos((int)setlocationPoint.X, (int)setlocationPoint.Y);
-            }
+            currentClickTime++;
+            if (hasClickLimit) if (currentClickTime == Int32.Parse(clickrepeatTextBox.Text)) stopButton_Click(this, null);
+            if (isLocationSet) SetCursorPos((int)setlocationPoint.X, (int)setlocationPoint.Y);
             mouse_event((int)mouseeventFlags.leftDown, (int)p.X, (int)p.Y, 0, 0);
             mouse_event((int)mouseeventFlags.leftUp, (int)p.X, (int)p.Y, 0, 0);
         }
@@ -183,15 +195,26 @@ namespace AutoClickerProject
             picklocationHideOnStartCheckBox.IsEnabled = state;
             if (state)
             {
-                picklocationTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
-                picklocationHideOnStartTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
+                picklocationTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
+                picklocationHideOnStartTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
             } else
             {
-                picklocationTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
-                picklocationHideOnStartTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
+                picklocationTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
+                picklocationHideOnStartTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
 
             }
         }
-
+        private void HideOrShowClickRepeat(bool state)
+        {
+            clickrepeatTextBox.IsEnabled = state;
+            if (state)
+            {
+                clickrepeatLabel.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
+            }
+            else
+            {
+                clickrepeatLabel.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
+            }
+        }
     }
 }

@@ -39,6 +39,12 @@
         <CheckBox Style="{DynamicResource CheckBoxStyle}" x:Name="picklocationHideOnStartCheckBox" BorderThickness="1" Background="#121212" Margin="345,46,87,236" Grid.Row="1"/>
         <Button Style="{DynamicResource ButtonStyle1}" x:Name="setlocationButton" Content="Set Location" FontSize="7" Foreground="#e1e1e1" Click="setlocationButton_Click" Grid.Row="1" Margin="355,64,38,209"/>
 
+        <Rectangle HorizontalAlignment="Left" Height="50" Margin="328,108,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
+        <CheckBox Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#121212" Name="clickrepeatCheckbox" Unchecked="clickrepeatCheckbox_Unchecked" Checked="clickrepeatCheckbox_Checked" Margin="335,100,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="355,99,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="76"><Run Text="Click repeat" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+        <TextBox x:Name="clickrepeatTextBox" PreviewTextInput="NumberValidationTextBox" Text="1" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="342,126,0,155" Grid.Row="1" HorizontalAlignment="Left" Width="42"/>
+        <Label Name="clickrepeatLabel" Content="times" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="385,119,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+
         <Button Style="{DynamicResource ButtonStyle1}" Name="settingsButton" Content="Settings" FontSize="20" Foreground="#e1e1e1" Click="settingsButton_Click"  Grid.ColumnSpan="2" Grid.Row="2"/>
         <Button Style="{DynamicResource ButtonStyle1}" Name="startButton" Content="Start" FontSize="20" Foreground="#e1e1e1" BorderThickness="1" Click="startButton_Click" Grid.Row="3" Margin="0,0,225,0" />
         <Button Style="{DynamicResource ButtonStyle1}" Name="stopButton" Content="Stop" FontSize="20" Foreground="#e1e1e1" Click="stopButton_Click" Grid.Row="3" Margin="225,0,0,0"/>
