@@ -1,4 +1,3 @@
-# AutoClicker Application
 # Overview
 This repository contains a simple AutoClicker application developed in WPF C# that allows users to automate mouse clicks.
 
