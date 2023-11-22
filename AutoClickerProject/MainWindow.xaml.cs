@@ -16,7 +16,8 @@ using System.Windows.Threading;
 namespace AutoClickerProject
 {
     public partial class MainWindow : Window
-    {   
+    {
+        private string defaulttextForeground = "#e1e1e1", disabledtextForeground = "#252523";
         private enum mouseeventFlags
         {
             leftDown = 2,
@@ -26,22 +27,27 @@ namespace AutoClickerProject
         [DllImport("user32.dll")]
         static extern void mouse_event(uint dwFlags, int dx, int dy, uint dwData, UIntPtr dwExtraInfo);
 
+        [DllImport("User32.dll")]
+        private static extern bool SetCursorPos(int X, int Y);
+
         private DispatcherTimer clickTimer = new DispatcherTimer();
 
-        private bool isClicking, isRandom;
+
+        private bool isClicking, isRandom, isLocationSet;
         private int clickInterval = 1000, randClickInterval;
         private int randMinTime = 1, randMaxTime = 2;
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
+        public Point setlocationPoint = new Point(404, 404); //for this var, 404,404 means its null
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             stopButton_Click(this, null);
-
+            HideOrShowPickLocation(false);
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
@@ -56,6 +62,8 @@ namespace AutoClickerProject
             clickTimer.Interval = TimeSpan.FromMilliseconds(clickInterval);
             clickTimer.Tick += Click_Timer_Tick;
             clickTimer.Start();
+
+            if (picklocationHideOnStartCheckBox.IsChecked == true && picklocationCheckbox.IsChecked == true) WindowState = WindowState.Minimized;
         }
 
 
@@ -98,11 +106,37 @@ namespace AutoClickerProject
         {
             TextBox? textBox = sender as TextBox;
 
-            if (textBox.Text.Length > 5)
+            if (textBox?.Text.Length > 5)
             {
                 textBox.Text = textBox.Text.Substring(0, 5);
                 textBox.CaretIndex = 5;
             }
+        }
+
+        private void picklocationCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            HideOrShowPickLocation(true);
+            if (setlocationPoint != new Point(404, 404)) //if isnt empty, since 404, 404 is null for this variable
+                {
+                    setlocationButton.Content = "Change location";
+                } else
+                {
+                    setlocationButton.Content = "Set location";
+                }
+        }
+
+        private void picklocationCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            HideOrShowPickLocation(false);
+            isLocationSet = false;
+        }
+
+        private void setlocationButton_Click(object sender, RoutedEventArgs e)
+        {
+            PickLocationWindow picklocationWindow = new PickLocationWindow();
+            picklocationWindow.Show();
+            WindowState = WindowState.Minimized;
         }
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
@@ -127,8 +161,36 @@ namespace AutoClickerProject
 
         private void LeftClick(Point p)
         {
+            if (isLocationSet)
+            {
+                SetCursorPos((int)setlocationPoint.X, (int)setlocationPoint.Y);
+            }
             mouse_event((int)mouseeventFlags.leftDown, (int)p.X, (int)p.Y, 0, 0);
             mouse_event((int)mouseeventFlags.leftUp, (int)p.X, (int)p.Y, 0, 0);
+        }
+
+        public void SetNewClickLocation(Point newPoint)
+        {
+            setlocationPoint = newPoint;
+            setlocationButton.Content = "Change";
+            picklocationTextBlock.Text = "X: " + newPoint.X.ToString() + "   Y: " + newPoint.Y.ToString();
+            isLocationSet = true;
+        }
+
+        private void HideOrShowPickLocation(bool state)
+        {
+            setlocationButton.IsEnabled = state;
+            picklocationHideOnStartCheckBox.IsEnabled = state;
+            if (state)
+            {
+                picklocationTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
+                picklocationHideOnStartTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
+            } else
+            {
+                picklocationTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
+                picklocationHideOnStartTextBlock.Foreground = new System.Windows.Media.SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
+
+            }
         }
 
     }
