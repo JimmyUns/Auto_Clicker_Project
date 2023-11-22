@@ -2,9 +2,9 @@
 This repository contains a simple AutoClicker application developed in WPF C# that allows users to automate mouse clicks.
 
 # Choose the desired features:
-Clicks By Time: Set the click interval.
-Select Click Location: Choose the screen coordinates for the click.
-Click Limiter: Set the clicking to stop after chosen amount.
+-Clicks By Time: Set the click interval.
+:Select Click Location: Choose the screen coordinates for the click.
+:-Click Limiter: Set the clicking to stop after chosen amount.
 
 Click the "Start" button to initiate the AutoClicker.
 To stop the AutoClicker, click the "Stop" button.
