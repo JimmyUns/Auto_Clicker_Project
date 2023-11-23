@@ -61,7 +61,7 @@ namespace AutoClickerProject
             clickTimer.Tick += Click_Timer_Tick;
             clickTimer.Start();
 
-            if (picklocationHideOnStartCheckBox.IsChecked == true && picklocationCheckbox.IsChecked == true) WindowState = WindowState.Minimized;
+            if (hideonstartCheckBox.IsChecked == true) WindowState = WindowState.Minimized;
             currentClickTime = 0;
         
         }
@@ -192,15 +192,12 @@ namespace AutoClickerProject
         private void HideOrShowPickLocation(bool state)
         {
             setlocationButton.IsEnabled = state;
-            picklocationHideOnStartCheckBox.IsEnabled = state;
             if (state)
             {
                 picklocationTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
-                picklocationHideOnStartTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
             } else
             {
                 picklocationTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
-                picklocationHideOnStartTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
 
             }
         }
