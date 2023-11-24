@@ -26,19 +26,19 @@ namespace AutoClickerProject
 
         private DispatcherTimer clickTimer = new DispatcherTimer();
 
+        private int randomintervalPercentage, clickInterval, randClickInterval;
 
         private bool isClicking, isRandom, isLocationSet, hasClickLimit;
-        private int clickInterval = 1000, randClickInterval;
-        private int randMinTime = 1, randMaxTime = 2;
         private int currentClickTime;
         public Point setlocationPoint = new Point(404, 404); //for this var, 404,404 means its null
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            stopButton_Click(this, null);
+            stopButton_Click(this, null);   
             HideOrShowPickLocation(false);
             HideOrShowClickRepeat(false);
+            ManageClickInterval();
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -139,11 +139,6 @@ namespace AutoClickerProject
             WindowState = WindowState.Minimized;
         }
 
-        private void settingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            //change the window to the settings window
-        }
-
 
         private void clickrepeatCheckbox_Checked(object sender, RoutedEventArgs e)
         {
@@ -151,6 +146,21 @@ namespace AutoClickerProject
             hasClickLimit = true;
 
         }
+
+        private void optionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var optionsWindow = new OptionsWindow();
+            optionsWindow.Show();
+            optionsWindow.Left = this.Left;
+            optionsWindow.Top = this.Top;
+            this.Hide();
+        }
+
+        private void randomintervalSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            ManageClickInterval();
+        }
+
         private void clickrepeatCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             HideOrShowClickRepeat(false);
@@ -166,8 +176,10 @@ namespace AutoClickerProject
             if (isRandom)
             {
                 Random r = new Random();
-                randClickInterval = r.Next(randMinTime, randMaxTime);
-                clickTimer.Interval = TimeSpan.FromSeconds(randClickInterval);
+                int currentRandPercentage = (clickInterval * randomintervalPercentage) / 100;
+                randClickInterval = r.Next(clickInterval - currentRandPercentage, clickInterval + currentRandPercentage);
+                clickTimer.Interval = TimeSpan.FromMilliseconds(randClickInterval);
+                Console.WriteLine(randClickInterval.ToString());
             }
         }
 
@@ -212,6 +224,13 @@ namespace AutoClickerProject
             {
                 clickrepeatLabel.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
             }
+        }
+
+        private void ManageClickInterval()
+        {
+            randomintervalPercentage = (int)randomintervalSlider.Value * 10;
+            randomintervalTextBlock.Text = randomintervalPercentage.ToString() + "%";
+            isRandom = randomintervalSlider.Value > 0 ? true : false;
         }
     }
 }
