@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 
 
+
 namespace AutoClickerProject
 {
     public partial class MainWindow : Window
@@ -34,8 +35,9 @@ namespace AutoClickerProject
         public MainWindow()
         {
             InitializeComponent();
+            Topmost = true;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            stopButton_Click(this, null);   
+            stopButton_Click(this, null);
             HideOrShowPickLocation(false);
             HideOrShowClickRepeat(false);
             ManageClickInterval();
@@ -46,8 +48,8 @@ namespace AutoClickerProject
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void startButton_Click(object sender, RoutedEventArgs e)
-        {   
+        private void startButton_Click(object sender, RoutedEventArgs? e)
+        {
             if (isClicking) return;
             if (clickrepeatTextBox.Text == "0" && hasClickLimit) { stopButton_Click(this, null); return; }
             isClicking = true;
@@ -63,7 +65,7 @@ namespace AutoClickerProject
 
             if (hideonstartCheckBox.IsChecked == true) WindowState = WindowState.Minimized;
             currentClickTime = 0;
-        
+
         }
 
 
@@ -118,12 +120,13 @@ namespace AutoClickerProject
 
             HideOrShowPickLocation(true);
             if (setlocationPoint != new Point(404, 404)) //if isnt empty, since 404, 404 is null for this variable
-                {
-                    setlocationButton.Content = "Change location";
-                } else
-                {
-                    setlocationButton.Content = "Set location";
-                }
+            {
+                setlocationButton.Content = "Change location";
+            }
+            else
+            {
+                setlocationButton.Content = "Set location";
+            }
         }
 
         private void picklocationCheckbox_Unchecked(object sender, RoutedEventArgs e)
@@ -167,6 +170,15 @@ namespace AutoClickerProject
             hasClickLimit = false;
         }
 
+        private void hidefromtaskbarButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ShowInTaskbar = false;
+        }
+        private void hidefromtaskbarButton_UnChecked(object sender, RoutedEventArgs e)
+        {
+            ShowInTaskbar = true;
+        }
+
         private void Click_Timer_Tick(object? sender, EventArgs e)
         {
             Point relativePosition = Mouse.GetPosition(this);
@@ -207,7 +219,8 @@ namespace AutoClickerProject
             if (state)
             {
                 picklocationTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(defaulttextForeground));
-            } else
+            }
+            else
             {
                 picklocationTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(disabledtextForeground));
 
@@ -232,5 +245,9 @@ namespace AutoClickerProject
             randomintervalTextBlock.Text = randomintervalPercentage.ToString() + "%";
             isRandom = randomintervalSlider.Value > 0 ? true : false;
         }
+
     }
 }
+
+
+
