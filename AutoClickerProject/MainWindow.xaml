@@ -4,69 +4,70 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoClickerProject"
-        mc:Ignorable="d"
-        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450" Background="Purple">
+        mc:Ignorable="d" AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="51"/>
-            <RowDefinition Height="84*"/>
-            <RowDefinition Height="37"/>
-            <RowDefinition Height="63"/>
-        </Grid.RowDefinitions>
+    <Border CornerRadius="25" BorderBrush="Black" BorderThickness="0" Background="#231e2a">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="51"/>
+                <RowDefinition Height="84*"/>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="63"/>
+            </Grid.RowDefinitions>
 
-        <Image HorizontalAlignment="Center" Source="C:\Users\hp\source\repos\AutoClicker\AutoClickerProject\Images\AutoClicker_Background.png" Margin="0,1,0,1"  Width="450" Grid.RowSpan="4"/>
-        <Label Content="Auto Clicker" Foreground="#e1e1e1" FontSize="25" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Height="43" Width="179"/>
-        <Label Content="V1" Foreground="Purple" FontSize="25" HorizontalAlignment="Left" Margin="147,0,0,0" VerticalAlignment="Center" Height="43" Width="73"/>
-        <Button Name="exitButton" Click="exitButton_Click" Content="x" Foreground="White" HorizontalAlignment="Left" Margin="414,10,0,0" VerticalAlignment="Top" Height="26" Width="27" Style="{DynamicResource ButtonStyle1}"/>
-        <Button Name="minimizeButton" Click="minimizeButton_Click" Content="-" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="382,10,0,0" VerticalAlignment="Top" Height="26" Width="27" Style="{DynamicResource ButtonStyle1}"/>
-        <Button Name="optionsButton" Visibility="Hidden" Click="optionsButton_Click" Content="Options" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="313,10,0,0" VerticalAlignment="Top" Height="26" Width="63" Style="{DynamicResource ButtonStyle1}"/>
+            <Label Content="Auto Clicker" Foreground="#e1e1e1" FontSize="25" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Height="43" Width="179"/>
+            <Label Content="V1" Foreground="#413d47" FontSize="25" HorizontalAlignment="Left" Margin="147,0,0,0" VerticalAlignment="Center" Height="43" Width="73"/>
+            <Button Name="exitButton" Click="exitButton_Click"  Content="x" Foreground="White" HorizontalAlignment="Left" Margin="414,10,0,0" VerticalAlignment="Top" Height="26" Width="27" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="minimizeButton" Click="minimizeButton_Click" Content="-" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="382,10,0,0" VerticalAlignment="Top" Height="26" Width="27" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="optionsButton" Visibility="Hidden" Click="optionsButton_Click" Content="Options" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="313,10,0,0" VerticalAlignment="Top" Height="26" Width="63" Style="{DynamicResource ButtonStyle1}"/>
 
-        <Rectangle HorizontalAlignment="Left" Height="47" Margin="10,10,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="305" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="19,1,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="76"><Run Text="Click interval" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
-        <Label Content="h" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="72,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox Name="millisecondInput" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="237,27,170,254" Grid.Row="1"/>
-        <Label Content="m" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="142,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox Name="secondInput" PreviewTextInput="NumberValidationTextBox" Text="1" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="169,27,238,254" Grid.Row="1"/>
-        <Label Content="s" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="212,22,0,0"/>
-        <TextBox Name="minuteInput" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="100,27,308,253" Grid.Row="1"/>
-        <Label Content="ms" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="279,22,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox Name="hourInput" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="29,28,378,252" Grid.Row="1"/>
+            <Rectangle HorizontalAlignment="Left" Height="47" Margin="10,10,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="305" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Background="#231e2a" Foreground="#e1e1e1" Margin="19,1,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="76"><Run Text="Click interval" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+            <Label Content="h" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="72,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBox Name="millisecondInput" Background="#413d47" Foreground="white" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="237,27,170,254" Grid.Row="1"/>
+            <Label Content="m" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="142,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBox Name="secondInput" Background="#413d47" Foreground="white" PreviewTextInput="NumberValidationTextBox" Text="1" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="169,27,238,254" Grid.Row="1"/>
+            <Label Content="s" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="212,22,0,0"/>
+            <TextBox Name="minuteInput" Background="#413d47" Foreground="white" PreviewTextInput="NumberValidationTextBox" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="100,27,308,253" Grid.Row="1"/>
+            <Label Content="ms" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="279,22,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBox Name="hourInput" PreviewTextInput="NumberValidationTextBox" Background="#413d47" Foreground="white" Text="0" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="29,28,378,252" Grid.Row="1"/>
 
-        <Rectangle HorizontalAlignment="Left" Height="231" Margin="10,68,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="305"/>
-        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="38,59,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="123"><Run Text="Record and Playback" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
-        <CheckBox IsEnabled="False" Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#121212" Name="recordandplaybackCheckBox" Unchecked="clickrepeatCheckbox_Unchecked" Margin="19,61,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Rectangle HorizontalAlignment="Left" Height="231" Margin="10,68,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="305"/>
+            <TextBlock HorizontalAlignment="Left" Background="#231e2a" Foreground="#e1e1e1" Margin="38,59,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="123"><Run Text="Record and Playback" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+            <CheckBox IsEnabled="False" Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#231e2a" Name="recordandplaybackCheckBox" Unchecked="clickrepeatCheckbox_Unchecked" Margin="19,61,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
 
 
-        <Rectangle HorizontalAlignment="Left" Height="69" Margin="328,10,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
-        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="354,2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="76"><Run Text="Pick location" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
-        <CheckBox Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#121212" Name="picklocationCheckbox" Unchecked="picklocationCheckbox_Unchecked" Checked="picklocationCheckbox_Checked" Margin="335,3,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
-        <TextBlock Name="picklocationTextBlock" Text="X: null   Y: null" Foreground="#e1e1e1" Margin="340,24,20,252" Grid.Row="1"/>
-        <Button Style="{DynamicResource ButtonStyle1}" x:Name="setlocationButton" Content="Set Location" FontSize="7" Foreground="#e1e1e1" Click="setlocationButton_Click" Grid.Row="1" Margin="355,47,38,226"/>
+            <Rectangle HorizontalAlignment="Left" Height="69" Margin="328,10,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
+            <TextBlock HorizontalAlignment="Left" Background="#231e2a" Foreground="#e1e1e1" Margin="354,2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="76"><Run Text="Pick location" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#231e2a" Name="picklocationCheckbox" Unchecked="picklocationCheckbox_Unchecked" Checked="picklocationCheckbox_Checked" Margin="335,3,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <TextBlock Name="picklocationTextBlock" Text="X: null   Y: null" Foreground="#e1e1e1" Margin="340,24,20,252" Grid.Row="1"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="setlocationButton" Background="#413d47" Content="Set Location" FontSize="7" Foreground="#e1e1e1" Click="setlocationButton_Click" Grid.Row="1" Margin="355,47,38,226"/>
 
-        <Rectangle HorizontalAlignment="Left" Height="50" Margin="328,91,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
-        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="355,82,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="73"><Run Text="Click repeat" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
-        <CheckBox Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#121212" Name="clickrepeatCheckbox" Unchecked="clickrepeatCheckbox_Unchecked" Checked="clickrepeatCheckbox_Checked" Margin="335,83,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
-        <TextBox x:Name="clickrepeatTextBox" PreviewTextInput="NumberValidationTextBox" Text="1" BorderThickness="0" FontSize="14" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="342,109,0,172" Grid.Row="1" HorizontalAlignment="Left" Width="42"/>
-        <Label Name="clickrepeatLabel" Content="times" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="385,102,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Margin="328,91,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
+            <TextBlock HorizontalAlignment="Left" Background="#231e2a" Foreground="#e1e1e1" Margin="355,82,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="73"><Run Text="Click repeat" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}" BorderThickness="1" Background="#231e2a" Name="clickrepeatCheckbox" Unchecked="clickrepeatCheckbox_Unchecked" Checked="clickrepeatCheckbox_Checked" Margin="335,83,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <TextBox x:Name="clickrepeatTextBox" PreviewTextInput="NumberValidationTextBox" Text="1" BorderThickness="0" FontSize="14" Background="#413d47" TextChanged="SetTimeInput_TextChanged" TextAlignment="Right" LostFocus="SetTimeInput_LostFocus" Margin="342,109,0,172" Grid.Row="1" HorizontalAlignment="Left" Width="42"/>
+            <Label Name="clickrepeatLabel" Content="times" FontSize="14" Foreground="#e1e1e1" HorizontalAlignment="Left" Margin="385,102,0,0" VerticalAlignment="Top" Grid.Row="1"/>
 
-        <Rectangle HorizontalAlignment="Left" Height="75" Margin="328,157,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
-        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="337,147,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="59"><Run Text="Shortcut" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
-        <Label Name="shortcutLabel" Content="F6" Background="DarkGray" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="338,169,16,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button Style="{DynamicResource ButtonStyle1}" x:Name="changeshortcutButton" Content="Change Key" FontSize="7" Foreground="#e1e1e1" Grid.Row="1" Margin="358,199,36,74"/>
+            <Rectangle HorizontalAlignment="Left" Height="75" Margin="328,157,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
+            <TextBlock HorizontalAlignment="Left" Background="#231e2a" Foreground="#e1e1e1" Margin="337,147,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="59"><Run Text="Shortcut" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+            <Label Name="shortcutLabel" Content="F6" Background="DarkGray" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="338,169,16,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="changeshortcutButton" Content="Change Key" FontSize="7" Background="#413d47" Foreground="#e1e1e1" Grid.Row="1" Margin="358,199,36,74"/>
 
-        <Rectangle HorizontalAlignment="Left" Height="54" Margin="327,245,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
-        <TextBlock HorizontalAlignment="Left" Background="#121212" Foreground="#e1e1e1" Margin="336,236,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="99"><Run Text="Random Interval" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
-        <Slider x:Name="randomintervalSlider" ValueChanged="randomintervalSlider_ValueChanged" Maximum="20" HorizontalAlignment="Left" IsEnabled="True" Value="0" Margin="340,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94"/>
-        <TextBlock Name="randomintervalTextBlock" Text="100%" Foreground="#e1e1e1" Margin="372,255,48,28" Grid.Row="1"/>
+            <Rectangle HorizontalAlignment="Left" Height="54" Margin="327,245,0,0" Grid.Row="1" Stroke="#1d1d1d" VerticalAlignment="Top" Width="114"/>
+            <TextBlock HorizontalAlignment="Left" Background="#231e2a" Foreground="#e1e1e1" Margin="336,236,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Width="99"><Run Text="Random Interval" FontWeight="Bold"/><LineBreak/><Run/></TextBlock>
+            <Slider x:Name="randomintervalSlider" ValueChanged="randomintervalSlider_ValueChanged" Maximum="20" HorizontalAlignment="Left" IsEnabled="True" Value="0" Margin="340,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94"/>
+            <TextBlock Name="randomintervalTextBlock" Text="100%" Foreground="#e1e1e1" Margin="372,255,48,28" Grid.Row="1"/>
 
-        <TextBlock Name="hideonstartTextBox" HorizontalAlignment="Left" Margin="364,10,0,0" Grid.Row="2" FontSize="10" TextWrapping="Wrap" Text="Hide on start" Foreground="#e1e1e1" VerticalAlignment="Top"/>
-        <CheckBox Style="{DynamicResource CheckBoxStyle}" x:Name="hideonstartCheckBox" BorderThickness="1" Background="#121212" Margin="346,10,86,10" Grid.Row="2"/>
+            <TextBlock Name="hideonstartTextBox" HorizontalAlignment="Left" Margin="364,10,0,0" Grid.Row="2" FontSize="10" TextWrapping="Wrap" Text="Hide on start" Foreground="#e1e1e1" VerticalAlignment="Top"/>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}" x:Name="hideonstartCheckBox" BorderThickness="1" Background="#231e2a" Margin="346,10,86,10" Grid.Row="2"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="2" FontSize="10" TextWrapping="Wrap" Text="Hide from taskbar" Foreground="#e1e1e1" VerticalAlignment="Top"/>
-        <CheckBox Style="{DynamicResource CheckBoxStyle}" Checked="hidefromtaskbarButton_Checked" Unchecked="hidefromtaskbarButton_UnChecked" BorderThickness="1" Background="#121212" Margin="212,10,220,10" Grid.Row="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="2" FontSize="10" TextWrapping="Wrap" Text="Hide from taskbar" Foreground="#e1e1e1" VerticalAlignment="Top"/>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}" Checked="hidefromtaskbarButton_Checked" Unchecked="hidefromtaskbarButton_UnChecked" BorderThickness="1" Background="#231e2a" Margin="212,10,220,10" Grid.Row="2"/>
 
-        <Button Style="{DynamicResource ButtonStyle1}" Name="startButton" Content="Start" FontSize="20" Foreground="#e1e1e1" BorderThickness="1" Click="startButton_Click" Grid.Row="3" Margin="0,0,225,0" />
-        <Button Style="{DynamicResource ButtonStyle1}" Name="stopButton" Content="Stop" FontSize="20" Foreground="#e1e1e1" Click="stopButton_Click" Grid.Row="3" Margin="225,0,0,0"/>
-    </Grid>
+            <Button Style="{DynamicResource ButtonStyle1}" Name="startButton" Content="Start" FontSize="20" Background="#413d47" Foreground="#e1e1e1" BorderThickness="0" Click="startButton_Click" Grid.Row="2" Margin="10,36,226,10" Grid.RowSpan="2" />
+            <Button Style="{DynamicResource ButtonStyle1}" Name="stopButton" Content="Stop" FontSize="20" Background="#413d47" Foreground="#e1e1e1" BorderThickness="0" Click="stopButton_Click" Grid.Row="2" Margin="226,36,10,10" Grid.RowSpan="2"/>
+        </Grid>
+    </Border>
 </Window>
