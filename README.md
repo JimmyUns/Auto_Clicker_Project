@@ -3,8 +3,10 @@ This repository contains a simple AutoClicker application developed in WPF C# th
 
 # Choose the desired features:
 - Clicks By Time: Set the click interval.
+- Clicks Per Seconds
 - Select Click Location: Choose the screen coordinates for the click.
 - Click Limiter: Set the clicking to stop after chosen amount.
+- -CLick interval randomization for harder detection
 
 Click the "Start" button to initiate the AutoClicker.
 To stop the AutoClicker, click the "Stop" button.
