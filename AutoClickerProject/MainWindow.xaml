@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoClickerProject"
         mc:Ignorable="d" AllowsTransparency="True" Background="Transparent"
-        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450" Closed="Window_Closed"    >
+        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450" Closed="Window_Closed" Icon="/Images/NewAutoClickerIcon.png" >
     <Border CornerRadius="25" BorderBrush="Black" BorderThickness="0" Background="#231e2a">
         <Grid>
             <Grid.RowDefinitions>
