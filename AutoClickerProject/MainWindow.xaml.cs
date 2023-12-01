@@ -19,6 +19,8 @@ namespace AutoClickerProject
         {
             leftDown = 2,
             leftUp = 4,
+            rightDown = 8,
+            RightUp = 16,
         }
         //the timer that handles clicking
         private DispatcherTimer clickTimer = new DispatcherTimer();
@@ -110,7 +112,8 @@ namespace AutoClickerProject
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Keyboard.ClearFocus();
-            this.DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+                this.DragMove();
         }
 
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
@@ -242,8 +245,15 @@ namespace AutoClickerProject
             currentClickTime++;
             if (hasClickLimit) if (currentClickTime == Int32.Parse(clickrepeatTextBox.Text)) stopButton_Click(this, null);
             if (isLocationSet) SetCursorPos((int)setlocationPoint.X, (int)setlocationPoint.Y);
-            mouse_event((int)mouseeventFlags.leftDown, (int)p.X, (int)p.Y, 0, 0);
-            mouse_event((int)mouseeventFlags.leftUp, (int)p.X, (int)p.Y, 0, 0);
+            if (leftclickRadio.IsChecked == true)
+            {
+                mouse_event((int)mouseeventFlags.leftDown, (int)p.X, (int)p.Y, 0, 0);
+                mouse_event((int)mouseeventFlags.leftUp, (int)p.X, (int)p.Y, 0, 0);
+            } else if (rightclickRadio.IsChecked == true)
+            {
+                mouse_event((int)mouseeventFlags.rightDown, (int)p.X, (int)p.Y, 0, 0);
+                mouse_event((int)mouseeventFlags.RightUp, (int)p.X, (int)p.Y, 0, 0);
+            }
         }
 
         public void SetNewClickLocation(Point newPoint)
@@ -324,7 +334,10 @@ namespace AutoClickerProject
                 + "\nrandom_interval_slider=" + (int)randomintervalSlider.Value
 
                 + "\nhide_from_taskbar_cb=" + hidefromtaskbarCheckBox.IsChecked
-                + "\npick_location_cb=" + picklocationCheckbox.IsChecked;
+                + "\nhide_on_start=" + hideonstartCheckBox.IsChecked
+                +"\nleft_click_radio=" + leftclickRadio.IsChecked
+                + "\nright_click_radio=" + rightclickRadio.IsChecked;
+
             File.WriteAllText(fileDir, savefileText);
         }
 
@@ -374,6 +387,9 @@ namespace AutoClickerProject
             { "click_repeat_input", value => clickrepeatTextBox.Text = value },
             { "random_interval_slider", value => randomintervalSlider.Value = Convert.ToDouble(value) },
             { "hide_from_taskbar_cb", value => hidefromtaskbarCheckBox.IsChecked = Convert.ToBoolean(value) },
+            { "npick_location_cb", value => hideonstartCheckBox.IsChecked = Convert.ToBoolean(value) },
+            { "left_click_radio", value => leftclickRadio.IsChecked = Convert.ToBoolean(value) },
+            { "right_click_radio", value => rightclickRadio.IsChecked = Convert.ToBoolean(value) },
         };
 
                 for (int i = 1; i < lines.Length; i++) // Start from index 1 to skip the "save_on_exit" line

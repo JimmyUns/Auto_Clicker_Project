@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoClickerProject"
         mc:Ignorable="d" AllowsTransparency="True" Background="Transparent"
-        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450" Closed="Window_Closed">
+        WindowStyle="None" MouseDown="Window_MouseDown" ResizeMode="CanMinimize" Height="450" Width="450" Closed="Window_Closed"    >
     <Border CornerRadius="25" BorderBrush="Black" BorderThickness="0" Background="#231e2a">
         <Grid>
             <Grid.RowDefinitions>
@@ -120,6 +120,9 @@
 
             <TextBlock Name="hideonstartTextBox" HorizontalAlignment="Left" Margin="163,10,0,0" Grid.Row="2" FontSize="10" TextWrapping="Wrap" Text="Hide on start" Foreground="#e1e1e1" VerticalAlignment="Top"/>
             <CheckBox Style="{DynamicResource CheckBoxStyle}" x:Name="hideonstartCheckBox" BorderThickness="1" Background="#231e2a" Margin="145,10,287,10" Grid.Row="2"/>
+
+            <RadioButton GroupName="clickingbutton" Name="leftclickRadio" IsChecked="True" Content="Left Click" HorizontalAlignment="Left" Margin="284,9,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+            <RadioButton GroupName="clickingbutton" Name="rightclickRadio" Content="Right Click" HorizontalAlignment="Left" Margin="360,9,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
             <TextBlock HorizontalAlignment="Left" Margin="29,10,0,0" Grid.Row="2" FontSize="10" TextWrapping="Wrap" Text="Hide from taskbar" Foreground="#e1e1e1" VerticalAlignment="Top"/>
             <CheckBox Style="{DynamicResource CheckBoxStyle}" Name="hidefromtaskbarCheckBox" Checked="hidefromtaskbarButton_Checked" Unchecked="hidefromtaskbarButton_UnChecked" BorderThickness="1" Background="#231e2a" Margin="11,10,421,10" Grid.Row="2"/>
